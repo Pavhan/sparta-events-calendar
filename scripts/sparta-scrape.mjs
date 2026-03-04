@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import cheerio from 'cheerio';
+import { load as loadCheerio } from 'cheerio';
 
 const CAL_URL = 'https://sparta.cz/cs/zapasy/1-muzi-a/2025-2026/kalendar';
 const OUT_DIR = path.join(process.cwd(), 'docs');
@@ -238,7 +238,7 @@ function buildIcs(items) {
 
 async function main() {
   const html = await fetchText(CAL_URL);
-  const $ = cheerio.load(html);
+  const $ = loadCheerio(html);
 
   // všechny odkazy na detail zápasu
   const links = new Map(); // href -> item
