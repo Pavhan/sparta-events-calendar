@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { load as loadCheerio } from 'cheerio';
+import { chromium } from 'playwright';
 
 const CAL_URL = 'https://sparta.cz/cs/zapasy/1-muzi-a/2025-2026/kalendar';
 const OUT_DIR = path.join(process.cwd(), 'docs');
@@ -34,21 +35,39 @@ function toIcsLocalDateTime(d) {
   )}${pad2(d.getMinutes())}${pad2(d.getSeconds())}`;
 }
 
-async function fetchText(url) {
-  const res = await fetch(url, {
-    headers: {
-      'user-agent': 'sparta-ics-bot/1.0 (+github actions)',
-      accept: 'text/html',
-    },
-  });
-  if (!res.ok) throw new Error(`Fetch failed ${res.status}: ${url}`);
-  return await res.text();
+async function fetchRenderedHtml(url) {
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage({
+      userAgent: 'sparta-ics-bot/1.0 (+playwright)',
+    });
+
+    await page.goto(url, { waitUntil: 'networkidle' });
+    await page.waitForSelector(
+      '.MatchPreview_League__JgAKd[data-context="league"]',
+      {
+        timeout: 15000,
+      },
+    );
+    // krátký delay, ať doběhnou doplňující requesty s časy
+    await page.waitForTimeout(1000);
+
+    return await page.content();
+  } finally {
+    await browser.close();
+  }
 }
 
 function normalizeSpace(s) {
   return String(s ?? '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function inferSeasonYearHint(url) {
+  const m = url.match(/(\d{4})-\d{4}/);
+  if (m) return Number(m[1]);
+  return new Date().getFullYear();
 }
 
 /**
@@ -81,6 +100,21 @@ function findContainer($, $a) {
 function extractDateTimeFromText(text, seasonYearHint = 2025) {
   const t = normalizeSpace(text);
 
+  // varianta s dnem v týdnu (bereme POSLEDNÍ výskyt v řetězci):
+  // "ne, 8. 3., 18:30" nebo "so, 4. 4."
+  const dowRe =
+    /\b(?:po|út|st|čt|pá|so|ne)\b\s*,\s*(\d{1,2})\.\s*(\d{1,2})\.(?:\s*,\s*([01]?\d|2[0-3]):([0-5]\d))?/gi;
+  const dowMatches = Array.from(t.matchAll(dowRe));
+  if (dowMatches.length) {
+    const m = dowMatches[dowMatches.length - 1];
+    const dd = Number(m[1]);
+    const mo = Number(m[2]);
+    const hh = m[3] != null ? Number(m[3]) : null;
+    const mm = m[4] != null ? Number(m[4]) : null;
+    const yyyy = mo >= 7 ? seasonYearHint : seasonYearHint + 1;
+    return { dd, mo, yyyy, hh, mm, hasTime: m[3] != null };
+  }
+
   // čas
   const timeMatch = t.match(/\b([01]?\d|2[0-3]):([0-5]\d)\b/);
   const hh = timeMatch ? Number(timeMatch[1]) : null;
@@ -109,11 +143,25 @@ function extractDateTimeFromText(text, seasonYearHint = 2025) {
 }
 
 function extractDateTime($container, debugText, seasonYearHint = 2025) {
-  const leagueText = normalizeSpace(
+  const $league = $container
+    .find('.MatchPreview_League__JgAKd[data-context="league"]')
+    .first();
+
+  if ($league.length) {
+    const $inner = $league.find('div').first();
+    const leagueText = normalizeSpace(
+      $inner.length ? $inner.text() : $league.text(),
+    );
+
+    const dt = extractDateTimeFromText(leagueText, seasonYearHint);
+    if (dt) return dt;
+  }
+
+  const leagueTextFallback = normalizeSpace(
     $container.find('[data-context="league"]').first().text(),
   );
   return (
-    extractDateTimeFromText(leagueText, seasonYearHint) ||
+    extractDateTimeFromText(leagueTextFallback, seasonYearHint) ||
     extractDateTimeFromText(debugText, seasonYearHint)
   );
 }
@@ -138,9 +186,7 @@ function extractRoundFromLeagueText(leagueText) {
   const roundMatch = leagueText.match(/(\d+\.\s*kolo)/i);
   if (roundMatch) return roundMatch[1];
 
-  const beforeDow = leagueText.split(
-    /\b(?:po|út|st|čt|pá|so|ne)\b/i,
-  )[0];
+  const beforeDow = leagueText.split(/\b(?:po|út|st|čt|pá|so|ne)\b/i)[0];
   const cleaned = normalizeSpace(beforeDow.replace(/[|•·]/g, ' '));
   return cleaned || null;
 }
@@ -197,7 +243,7 @@ function buildHtmlReport(items) {
       return `
         <tr>
           <td>${idx + 1}</td>
-          <td><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
+          <td style="text-align:left"><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
             it.href,
           )}</a></td>
           <td>${escapeHtml(dt)}</td>
@@ -220,7 +266,7 @@ function buildHtmlReport(items) {
     h1{margin:0 0 8px}
     .meta{color:#555;margin:0 0 16px}
     table{border-collapse:collapse;width:100%}
-    th,td{border:1px solid #ddd;padding:8px;vertical-align:top}
+    th,td{border:1px solid #ddd;padding:8px;vertical-align:top;text-align:center}
     th{position:sticky;top:0;background:#fff}
     pre{white-space:pre-wrap;word-break:break-word;margin:0}
     details summary{cursor:pointer}
@@ -290,8 +336,9 @@ function buildIcs(items) {
 }
 
 async function main() {
-  const html = await fetchText(CAL_URL);
+  const html = await fetchRenderedHtml(CAL_URL);
   const $ = loadCheerio(html);
+  const seasonYearHint = inferSeasonYearHint(CAL_URL);
 
   // všechny odkazy na detail zápasu
   const links = new Map(); // href -> item
@@ -304,10 +351,11 @@ async function main() {
     if (links.has(href)) return;
 
     const $a = $(el);
-    const $container = findContainer($, $a);
+    const $card = $a.closest('[data-component="match-preview"]');
+    const $container = $card.length ? $card : findContainer($, $a);
     const debugText = normalizeSpace($container.text());
 
-    const dt = extractDateTime($container, debugText, 2025);
+    const dt = extractDateTime($container, debugText, seasonYearHint);
     const summary = extractSummary(debugText);
     const { round, home, away } = extractMatchInfo($, $container, debugText);
 
