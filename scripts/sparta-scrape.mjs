@@ -269,13 +269,13 @@ function buildHtmlReport(items) {
           return `
             <tr>
               <td>${runningIndex++}</td>
-              <td style="text-align:left"><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
-                it.href,
-              )}</a></td>
-              <td>${escapeHtml(dt)}</td>
               <td>${escapeHtml(it.round ?? '—')}</td>
               <td>${escapeHtml(it.home ?? '—')}</td>
               <td>${escapeHtml(it.away ?? '—')}</td>
+              <td>${escapeHtml(dt)}</td>
+              <td style="text-align:left"><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
+                it.href,
+              )}</a></td>
             </tr>
           `;
         })
@@ -287,11 +287,11 @@ function buildHtmlReport(items) {
           <thead>
             <tr>
               <th>#</th>
-              <th>Detail link</th>
-              <th>Date/Time (parsed)</th>
               <th>Kolo</th>
               <th>Domácí</th>
               <th>Hosté</th>
+              <th>Datum</th>
+              <th>Link</th>
             </tr>
           </thead>
           <tbody>
@@ -312,8 +312,14 @@ function buildHtmlReport(items) {
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.4;padding:24px}
     h1{margin:0 0 8px}
     .meta{color:#555;margin:0 0 16px}
-    table{border-collapse:collapse;width:100%}
+    table{border-collapse:collapse;width:100%;table-layout:fixed}
     th,td{border:1px solid #ddd;padding:8px;vertical-align:top;text-align:center}
+    th:nth-child(1), td:nth-child(1){width:6%}
+    th:nth-child(2), td:nth-child(2){width:18%}
+    th:nth-child(3), td:nth-child(3){width:18%}
+    th:nth-child(4), td:nth-child(4){width:18%}
+    th:nth-child(5), td:nth-child(5){width:14%}
+    th:nth-child(6), td:nth-child(6){width:26%}
     th{position:sticky;top:0;background:#fff}
     pre{white-space:pre-wrap;word-break:break-word;margin:0}
     details summary{cursor:pointer}
