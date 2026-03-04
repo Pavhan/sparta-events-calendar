@@ -37,6 +37,7 @@ jobs:
           else
             npm install
           fi
+          npx playwright install --with-deps chromium
 
       - name: Generate docs (HTML report + ICS)
         shell: bash
