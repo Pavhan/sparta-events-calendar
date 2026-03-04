@@ -95,7 +95,7 @@ function extractDateTimeFromText(text, seasonYearHint = 2025) {
     return { dd, mo, yyyy, hh, mm, hasTime: !!timeMatch };
   }
 
-  const dateNoYear = t.match(/\b(\d{1,2})\.\s*(\d{1,2})\.\b/);
+  const dateNoYear = t.match(/\b(\d{1,2})\.\s*(\d{1,2})\.(?:\s|,|$)/);
   if (dateNoYear) {
     const dd = Number(dateNoYear[1]);
     const mo = Number(dateNoYear[2]);
@@ -124,6 +124,49 @@ function extractSummary(text) {
   return 'AC Sparta Praha — match (see link)';
 }
 
+function extractRoundFromLeagueText(leagueText) {
+  const roundMatch = leagueText.match(/(\d+\.\s*kolo)/i);
+  if (roundMatch) return roundMatch[1];
+
+  const beforeDow = leagueText.split(
+    /\b(?:po|út|st|čt|pá|so|ne)\b/i,
+  )[0];
+  const cleaned = normalizeSpace(beforeDow.replace(/[|•·]/g, ' '));
+  return cleaned || null;
+}
+
+function extractMatchInfo($, $container, debugText) {
+  const leagueText = normalizeSpace(
+    $container.find('[data-context="league"]').first().text(),
+  );
+
+  let round =
+    extractRoundFromLeagueText(leagueText) ||
+    (normalizeSpace(debugText).match(/(\d+\.\s*kolo)/i)?.[1] ?? null);
+
+  const teams = $container
+    .find('[data-context="team"] strong')
+    .map((_, el) => normalizeSpace($(el).text()))
+    .get()
+    .filter(Boolean);
+
+  let home = null;
+  let away = null;
+  if (teams.length >= 2) {
+    const dataHome =
+      $container.find('[data-context="who"]').first().attr('data-home') ?? '';
+    if (dataHome === 'false') {
+      away = teams[0];
+      home = teams[1];
+    } else {
+      home = teams[0];
+      away = teams[1];
+    }
+  }
+
+  return { round, home, away };
+}
+
 function uidFromLink(url) {
   return (
     'sparta-' +
@@ -148,10 +191,9 @@ function buildHtmlReport(items) {
             it.href,
           )}</a></td>
           <td>${escapeHtml(dt)}</td>
-          <td>${escapeHtml(it.summary)}</td>
-          <td><details><summary>debug text</summary><pre>${escapeHtml(
-            it.debugText,
-          )}</pre></details></td>
+          <td>${escapeHtml(it.round ?? '—')}</td>
+          <td>${escapeHtml(it.home ?? '—')}</td>
+          <td>${escapeHtml(it.away ?? '—')}</td>
         </tr>
       `;
     })
@@ -191,8 +233,9 @@ function buildHtmlReport(items) {
         <th>#</th>
         <th>Detail link</th>
         <th>Date/Time (parsed)</th>
-        <th>Summary (heuristic)</th>
-        <th>Debug</th>
+        <th>Kolo</th>
+        <th>Domácí</th>
+        <th>Hosté</th>
       </tr>
     </thead>
     <tbody>
@@ -256,8 +299,9 @@ async function main() {
 
     const dt = extractDateTimeFromText(debugText, 2025);
     const summary = extractSummary(debugText);
+    const { round, home, away } = extractMatchInfo($, $container, debugText);
 
-    links.set(href, { href, dt, summary, debugText });
+    links.set(href, { href, dt, summary, debugText, round, home, away });
   });
 
   const items = Array.from(links.values());
