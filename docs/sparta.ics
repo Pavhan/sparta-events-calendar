@@ -5,61 +5,61 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:sparta-ef8d4d25ea2feb36@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260308T183000
-SUMMARY:25. kolone\, 8. 3.\, 18:30AC Sparta Praha03D21H22MIN45SECSK Slavia PrahaFortuna…
+SUMMARY:25. kolo - SK Slavia Praha - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5343-ac-sparta-praha-sk-slavia-praha
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-0675a06bf3077a08@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260312T184500
-SUMMARY:Osmifinálečt\, 12. 3.\, 18:45AC Sparta PrahavsAZ AlkmaarAFAS stadiumDetail
+SUMMARY:Osmifinále - AZ Alkmaar - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5685-ac-sparta-praha-az-alkmaar
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-e09abc7b1796556a@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260315T183000
-SUMMARY:26. kolone\, 15. 3.\, 18:30AC Sparta Prahaepet ARENAvs1.FC SlováckoDetailVstupenky
+SUMMARY:26. kolo - AC Sparta Praha - 1.FC Slovácko
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5346-ac-sparta-praha-1fc-slovacko
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-b5b2f89d6a2eff38@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260319T210000
-SUMMARY:Osmifinálečt\, 19. 3.\, 21:00AC Sparta Prahaepet ARENAvsAZ AlkmaarDetailProdej …
+SUMMARY:Osmifinále - AC Sparta Praha - AZ Alkmaar
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5686-ac-sparta-praha-az-alkmaar
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-56fd6751b92dbafb@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260404T180000
-SUMMARY:28. koloso\, 4. 4.AC Sparta Prahaepet ARENAvsMFK KarvináDetail
+SUMMARY:28. kolo - AC Sparta Praha - MFK Karviná
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5353-ac-sparta-praha-mfk-karvina
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-a7adffa09c2bf355@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260411T180000
-SUMMARY:29. koloso\, 11. 4.AC Sparta PrahavsFK TepliceAGC Aréna Na StínadlechDetail
+SUMMARY:29. kolo - FK Teplice - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5354-ac-sparta-praha-fk-teplice
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-cd20a4c24542f0ad@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260418T180000
-SUMMARY:30. koloso\, 18. 4.AC Sparta Prahaepet ARENAvsFK JablonecDetailPartner tohoto …
+SUMMARY:30. kolo - AC Sparta Praha - FK Jablonec
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5355-ac-sparta-praha-fk-jablonec
 STATUS:TENTATIVE
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-58e5ea9da642f7d6@sparta.cz
-DTSTAMP:20260304T210715Z
+DTSTAMP:20260304T212233Z
 DTSTART:20260425T180000
-SUMMARY:27. koloso\, 25. 4.AC Sparta PrahavsBohemians Praha 1905ĎolíčekDetail
+SUMMARY:27. kolo - Bohemians Praha 1905 - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5348-ac-sparta-praha-bohemians-praha-1905
 STATUS:TENTATIVE
 END:VEVENT

@@ -191,6 +191,14 @@ function extractRoundFromLeagueText(leagueText) {
   return cleaned || null;
 }
 
+function cleanTeamName(name) {
+  const cleaned = normalizeSpace(name)
+    .replace(/Fortuna\s*$/i, '')
+    .replace(/ČPP\s*$/i, '')
+    .trim();
+  return cleaned;
+}
+
 function extractMatchInfo($, $container, debugText) {
   const leagueText = normalizeSpace(
     $container.find('[data-context="league"]').first().text(),
@@ -202,7 +210,7 @@ function extractMatchInfo($, $container, debugText) {
 
   const teams = $container
     .find('[data-context="team"] strong')
-    .map((_, el) => normalizeSpace($(el).text()))
+    .map((_, el) => cleanTeamName($(el).text()))
     .get()
     .filter(Boolean);
 
@@ -221,6 +229,14 @@ function extractMatchInfo($, $container, debugText) {
   }
 
   return { round, home, away };
+}
+
+function buildSummary(round, home, away, fallbackText) {
+  if (home && away) {
+    const prefix = round || 'Zápas';
+    return `${prefix} - ${home} - ${away}`;
+  }
+  return extractSummary(fallbackText);
 }
 
 function uidFromLink(url) {
@@ -373,8 +389,8 @@ async function main() {
     const debugText = normalizeSpace($container.text());
 
     const dt = extractDateTime($container, debugText, seasonYearHint);
-    const summary = extractSummary(debugText);
     const { round, home, away } = extractMatchInfo($, $container, debugText);
+    const summary = buildSummary(round, home, away, debugText);
     const $groupH2 = $a.closest('section').find('h2').first();
     $groupH2.find('a').remove();
     const group = normalizeSpace($groupH2.text());
