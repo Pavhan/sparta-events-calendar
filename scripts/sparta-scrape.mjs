@@ -232,25 +232,56 @@ function uidFromLink(url) {
 }
 
 function buildHtmlReport(items) {
-  const rows = items
-    .map((it, idx) => {
-      const dt = it.dt
-        ? `${it.dt.yyyy}-${pad2(it.dt.mo)}-${pad2(it.dt.dd)} ${
-            it.dt.hh !== null ? `${pad2(it.dt.hh)}:${pad2(it.dt.mm)}` : '??:??'
-          }`
-        : 'NOT FOUND';
+  const groups = new Map();
+  for (const it of items) {
+    const key = it.group || 'Nezařazeno';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(it);
+  }
+
+  let runningIndex = 1;
+  const tables = Array.from(groups.entries())
+    .map(([groupName, groupItems]) => {
+      const rows = groupItems
+        .map((it) => {
+          const dt = it.dt
+            ? `${it.dt.yyyy}-${pad2(it.dt.mo)}-${pad2(it.dt.dd)} ${
+                it.dt.hh !== null ? `${pad2(it.dt.hh)}:${pad2(it.dt.mm)}` : '??:??'
+              }`
+            : 'NOT FOUND';
+
+          return `
+            <tr>
+              <td>${runningIndex++}</td>
+              <td style="text-align:left"><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
+                it.href,
+              )}</a></td>
+              <td>${escapeHtml(dt)}</td>
+              <td>${escapeHtml(it.round ?? '—')}</td>
+              <td>${escapeHtml(it.home ?? '—')}</td>
+              <td>${escapeHtml(it.away ?? '—')}</td>
+            </tr>
+          `;
+        })
+        .join('\n');
 
       return `
-        <tr>
-          <td>${idx + 1}</td>
-          <td style="text-align:left"><a href="${escapeHtml(it.href)}" target="_blank" rel="noreferrer">${escapeHtml(
-            it.href,
-          )}</a></td>
-          <td>${escapeHtml(dt)}</td>
-          <td>${escapeHtml(it.round ?? '—')}</td>
-          <td>${escapeHtml(it.home ?? '—')}</td>
-          <td>${escapeHtml(it.away ?? '—')}</td>
-        </tr>
+        <h2>${escapeHtml(groupName)}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Detail link</th>
+              <th>Date/Time (parsed)</th>
+              <th>Kolo</th>
+              <th>Domácí</th>
+              <th>Hosté</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
       `;
     })
     .join('\n');
@@ -283,21 +314,7 @@ function buildHtmlReport(items) {
     <a href="./sparta.ics">Download sparta.ics</a>
   </p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Detail link</th>
-        <th>Date/Time (parsed)</th>
-        <th>Kolo</th>
-        <th>Domácí</th>
-        <th>Hosté</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${rows}
-    </tbody>
-  </table>
+  ${tables}
 </body>
 </html>`;
 }
@@ -358,8 +375,20 @@ async function main() {
     const dt = extractDateTime($container, debugText, seasonYearHint);
     const summary = extractSummary(debugText);
     const { round, home, away } = extractMatchInfo($, $container, debugText);
+    const $groupH2 = $a.closest('section').find('h2').first();
+    $groupH2.find('a').remove();
+    const group = normalizeSpace($groupH2.text());
 
-    links.set(href, { href, dt, summary, debugText, round, home, away });
+    links.set(href, {
+      href,
+      dt,
+      summary,
+      debugText,
+      round,
+      home,
+      away,
+      group: group || null,
+    });
   });
 
   const items = Array.from(links.values());
