@@ -108,6 +108,16 @@ function extractDateTimeFromText(text, seasonYearHint = 2025) {
   return null;
 }
 
+function extractDateTime($container, debugText, seasonYearHint = 2025) {
+  const leagueText = normalizeSpace(
+    $container.find('[data-context="league"]').first().text(),
+  );
+  return (
+    extractDateTimeFromText(leagueText, seasonYearHint) ||
+    extractDateTimeFromText(debugText, seasonYearHint)
+  );
+}
+
 /**
  * Heuristika na teams z textu: vezme řádek a zkusí najít "Sparta" a soupeře.
  * Když to nedá, nechá summary jako "Sparta match (see link)".
@@ -297,7 +307,7 @@ async function main() {
     const $container = findContainer($, $a);
     const debugText = normalizeSpace($container.text());
 
-    const dt = extractDateTimeFromText(debugText, 2025);
+    const dt = extractDateTime($container, debugText, 2025);
     const summary = extractSummary(debugText);
     const { round, home, away } = extractMatchInfo($, $container, debugText);
 
