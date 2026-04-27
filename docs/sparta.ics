@@ -4,10 +4,38 @@ PRODID:-//Sparta Fixtures//GitHub Actions//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:sparta-58e5ea9da642f7d6@sparta.cz
-DTSTAMP:20260420T055528Z
-DTSTART:20260425T160000
-SUMMARY:27. kolo - Bohemians Praha 1905 - AC Sparta Praha
-DESCRIPTION:Source: https://sparta.cz/cs/zapas/5348-ac-sparta-praha-bohemians-praha-1905
+UID:sparta-9cf3f27aeabf4672@sparta.cz
+DTSTAMP:20260427T060352Z
+DTSTART:20260503T183000
+SUMMARY:1. kolo - AC Sparta Praha - FK Jablonec
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5703-ac-sparta-praha-fk-jablonec
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-de6216f800e13a0b@sparta.cz
+DTSTAMP:20260427T060352Z
+DTSTART:20260509T190000
+SUMMARY:2. kolo - SK Slavia Praha - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5704-ac-sparta-praha-sk-slavia-praha
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-50a5f45d8b838be9@sparta.cz
+DTSTAMP:20260427T060352Z
+DTSTART:20260512T200000
+SUMMARY:3. kolo - AC Sparta Praha - FC Viktoria Plzeň
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5705-ac-sparta-praha-fc-viktoria-plzen
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-b8ea99bf0be4a8d8@sparta.cz
+DTSTAMP:20260427T060352Z
+DTSTART:20260517T170000
+SUMMARY:4. kolo - FC Slovan Liberec - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5706-ac-sparta-praha-fc-slovan-liberec
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-05e8ff375315b618@sparta.cz
+DTSTAMP:20260427T060352Z
+DTSTART:20260524T140000
+SUMMARY:5. kolo - AC Sparta Praha - FC Hradec Králové
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5707-ac-sparta-praha-fc-hradec-kralove
 END:VEVENT
 END:VCALENDAR
