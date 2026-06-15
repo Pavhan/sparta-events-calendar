@@ -5,28 +5,28 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:sparta-f3e1d93157d69994@sparta.cz
-DTSTAMP:20260608T063454Z
+DTSTAMP:20260615T065013Z
 DTSTART:20250704T000000
 SUMMARY:Přátelské zápasyso\, 4. 7.\, 00:00 - AC Sparta Praha - SFC Opava
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5713-ac-sparta-praha-sfc-opava
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-deb22d55d75f8af6@sparta.cz
-DTSTAMP:20260608T063454Z
+DTSTAMP:20260615T065013Z
 DTSTART:20250711T000000
 SUMMARY:Přátelské zápasyso\, 11. 7.\, 00:00 - Gamba Ósaka - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5714-ac-sparta-praha-gamba-osaka
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-10db1920224829e6@sparta.cz
-DTSTAMP:20260608T063454Z
+DTSTAMP:20260615T065013Z
 DTSTART:20250716T000000
 SUMMARY:Přátelské zápasy - Rangers FC - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5712-ac-sparta-praha-rangers-fc
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-4c1ecb9a5984efd3@sparta.cz
-DTSTAMP:20260608T063454Z
+DTSTAMP:20260615T065013Z
 DTSTART:20250717T000000
 SUMMARY:Přátelské zápasypá\, 17. 7.\, 00:00 - FC Nordsjælland - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5711-ac-sparta-praha-fc-nordsjaelland
