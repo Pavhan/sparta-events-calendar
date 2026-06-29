@@ -5,30 +5,142 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:sparta-f3e1d93157d69994@sparta.cz
-DTSTAMP:20260622T065058Z
-DTSTART:20250704T000000
-SUMMARY:Přátelské zápasyso\, 4. 7.\, 00:00 - AC Sparta Praha - SFC Opava
+DTSTAMP:20260629T063552Z
+DTSTART:20250704T130000
+SUMMARY:Přátelské zápasyso\, 4. 7.\, 13:00 - AC Sparta Praha - SFC Opava
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5713-ac-sparta-praha-sfc-opava
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-deb22d55d75f8af6@sparta.cz
-DTSTAMP:20260622T065058Z
-DTSTART:20250711T000000
-SUMMARY:Přátelské zápasyso\, 11. 7.\, 00:00 - Gamba Ósaka - AC Sparta Praha
+DTSTAMP:20260629T063552Z
+DTSTART:20250711T150000
+SUMMARY:Přátelské zápasyso\, 11. 7.\, 15:00 - Gamba Ósaka - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5714-ac-sparta-praha-gamba-osaka
 END:VEVENT
 BEGIN:VEVENT
-UID:sparta-10db1920224829e6@sparta.cz
-DTSTAMP:20260622T065058Z
-DTSTART:20250716T000000
-SUMMARY:Přátelské zápasy - Rangers FC - AC Sparta Praha
-DESCRIPTION:Source: https://sparta.cz/cs/zapas/5712-ac-sparta-praha-rangers-fc
+UID:sparta-86405d5f2bbec6dd@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250716T180000
+SUMMARY:Přátelské zápasy - Jagiellonia Białystok - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5712-ac-sparta-praha-jagiellonia-bialystok
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-4c1ecb9a5984efd3@sparta.cz
-DTSTAMP:20260622T065058Z
-DTSTART:20250717T000000
-SUMMARY:Přátelské zápasypá\, 17. 7.\, 00:00 - FC Nordsjælland - AC Sparta Praha
+DTSTAMP:20260629T063552Z
+DTSTART:20250717T120000
+SUMMARY:Přátelské zápasypá\, 17. 7.\, 12:00 - FC Nordsjælland - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5711-ac-sparta-praha-fc-nordsjaelland
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-f57dfb7b6312e5ea@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250725T000000
+SUMMARY:1. kolo - FC Zbrojovka Brno - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5724-ac-sparta-praha-fc-zbrojovka-brno
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-21354174cf35a8dc@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250801T000000
+SUMMARY:2. kolo - AC Sparta Praha - FC Zlín
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5725-ac-sparta-praha-fc-zlin
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-50dc622401835b09@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250808T000000
+SUMMARY:3. kolo - FK Mladá Boleslav - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5726-ac-sparta-praha-fk-mlada-boleslav
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-3764ddc1f74579d4@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250815T000000
+SUMMARY:4. kolo - AC Sparta Praha - FK Teplice
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5727-ac-sparta-praha-fk-teplice
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-591516b438a7a34b@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250822T000000
+SUMMARY:5. kolo - MFK Karviná - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5728-ac-sparta-praha-mfk-karvina
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-4a613045ca806786@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250829T000000
+SUMMARY:6. kolo - AC Sparta Praha - SK Slavia Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5729-ac-sparta-praha-sk-slavia-praha
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-2aaf08bf1cf172c4@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250905T000000
+SUMMARY:7. kolo - FC Hradec Králové - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5731-ac-sparta-praha-fc-hradec-kralove
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-61c306a84487cadd@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250912T000000
+SUMMARY:8. kolo - AC Sparta Praha - FK Jablonec
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5733-ac-sparta-praha-fk-jablonec
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-c6d03a3cfaf4d06e@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20250919T000000
+SUMMARY:9. kolo - SK Sigma Olomouc - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5735-ac-sparta-praha-sk-sigma-olomouc
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-215aefe69ec2477c@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251010T000000
+SUMMARY:10. kolo - AC Sparta Praha - FK Pardubice
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5737-ac-sparta-praha-fk-pardubice
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-3a8cc39621d1267a@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251017T000000
+SUMMARY:11. kolo - FC Baník Ostrava - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5739-ac-sparta-praha-fc-banik-ostrava
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-b42849bcc029977f@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251024T000000
+SUMMARY:12. kolo - AC Sparta Praha - 1.FC Slovácko
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5741-ac-sparta-praha-1fc-slovacko
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-241161bff14df076@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251031T000000
+SUMMARY:13. kolo - Bohemians Praha 1905 - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5743-ac-sparta-praha-bohemians-praha-1905
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-4af09ca5b87c205d@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251107T000000
+SUMMARY:14. kolo - FC Viktoria Plzeň - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5745-ac-sparta-praha-fc-viktoria-plzen
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-bc8a811178f38001@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251121T000000
+SUMMARY:15. kolo - AC Sparta Praha - FC Slovan Liberec
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5747-ac-sparta-praha-fc-slovan-liberec
+END:VEVENT
+BEGIN:VEVENT
+UID:sparta-2a00ebb185dcd6ff@sparta.cz
+DTSTAMP:20260629T063552Z
+DTSTART:20251128T000000
+SUMMARY:16. kolo - FC Zlín - AC Sparta Praha
+DESCRIPTION:Source: https://sparta.cz/cs/zapas/5749-ac-sparta-praha-fc-zlin
 END:VEVENT
 END:VCALENDAR
