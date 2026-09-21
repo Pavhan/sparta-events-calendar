@@ -4,37 +4,23 @@ PRODID:-//Sparta Fixtures//GitHub Actions//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:sparta-f200892c3cd5f0a3@sparta.cz
-DTSTAMP:20260914T102131Z
-DTSTART:20250916T184500
-SUMMARY:1. kolo - FC Ararat-Armenia - AC Sparta Praha
-DESCRIPTION:Source: https://sparta.cz/cs/zapas/5886-ac-sparta-praha-fc-ararat-armenia
-END:VEVENT
-BEGIN:VEVENT
-UID:sparta-c6d03a3cfaf4d06e@sparta.cz
-DTSTAMP:20260914T102131Z
-DTSTART:20250920T150000
-SUMMARY:9. kolo - SK Sigma Olomouc - AC Sparta Praha
-DESCRIPTION:Source: https://sparta.cz/cs/zapas/5735-ac-sparta-praha-sk-sigma-olomouc
-END:VEVENT
-BEGIN:VEVENT
 UID:sparta-215aefe69ec2477c@sparta.cz
-DTSTAMP:20260914T102131Z
+DTSTAMP:20260921T102612Z
 DTSTART:20251011T180000
 SUMMARY:10. kolo - AC Sparta Praha - FK Pardubice
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5737-ac-sparta-praha-fk-pardubice
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-e78dc1226fb786fa@sparta.cz
-DTSTAMP:20260914T102131Z
+DTSTAMP:20260921T102612Z
 DTSTART:20251015T184500
 SUMMARY:2. kolo - AC Sparta Praha - Lillestrøm SK
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5888-ac-sparta-praha-lillestrom-sk
 END:VEVENT
 BEGIN:VEVENT
 UID:sparta-3a8cc39621d1267a@sparta.cz
-DTSTAMP:20260914T102131Z
-DTSTART:20251017T000000
+DTSTAMP:20260921T102612Z
+DTSTART:20251018T150000
 SUMMARY:11. kolo - FC Baník Ostrava - AC Sparta Praha
 DESCRIPTION:Source: https://sparta.cz/cs/zapas/5739-ac-sparta-praha-fc-banik-ostrava
 END:VEVENT
